@@ -1,29 +1,49 @@
 import React from "react";
-import { PropertyProps } from "@/interfaces";
+import PropertyCard from "@/components/layout/PropertyCard";
+import { PROPERTYLISTINGSAMPLE } from "@/constants";
 
-const PropertyCard: React.FC<{ property: PropertyProps }> = ({ property }) => {
+const Home: React.FC = () => {
   return (
-    <article className="border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition">
-      <div className="h-48 w-full bg-gray-200">
-        <img
-          src={property.image}
-          alt={property.name}
-          className="w-full h-full object-cover"
-          loading="lazy"
-        />
-      </div>
-      <div className="p-4">
-        <h3 className="text-lg font-semibold">{property.name}</h3>
-        <p className="text-gray-600 text-sm">
-          {property.address.city}, {property.address.country}
-        </p>
-        <div className="flex items-center justify-between mt-3">
-          <div className="text-yellow-500 font-semibold">⭐ {property.rating}</div>
-          <div className="text-lg font-bold">${property.price}</div>
-        </div>
-      </div>
-    </article>
+    <div className="max-w-7xl mx-auto p-6 grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+      {PROPERTYLISTINGSAMPLE.map((property, index) => (
+        <PropertyCard key={index} property={property} />
+      ))}
+    </div>
   );
 };
 
-export default PropertyCard;
+export default Home;   
+
+
+
+// How your pages and components work together
+
+// pages/index.tsx
+
+// Your home page
+
+// Uses PROPERTYLISTINGSAMPLE to display a list of properties
+
+// Renders <PropertyCard /> for each property
+
+// components/layout/Layout.tsx
+
+// Wraps every page with Header + Footer
+
+// children is the content of the page
+
+// components/layout/Header.tsx & Footer.tsx
+
+// Just the top and bottom UI
+
+// components/layout/PropertyCard.tsx
+
+// Shows single property info (image, name, price, rating)
+
+// constants/index.ts
+
+// Provides mock property data with proper image paths
+
+// interfaces/index.ts
+
+// Provides TypeScript type definitions for your data

@@ -1,13 +1,43 @@
+import Header from "./Header";
+import Footer from "./Footer";
 import React from "react";
 
-const Footer: React.FC = () => {
+const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
-    <footer className="bg-gray-50 border-t mt-8">
-      <div className="max-w-7xl mx-auto p-6 text-center text-sm text-gray-600">
-        © {new Date().getFullYear()} alx-listing · Built with Next.js & Tailwind
-      </div>
-    </footer>
+    <>
+      <Header />
+      <main className="min-h-screen">{children}</main>
+      <Footer />
+    </>
   );
 };
 
-export default Footer;
+export default Layout;  
+
+
+// children is a special React prop. It represents whatever content is inside <Layout> when you use it.
+
+// Example from app.tsx:
+
+// <Layout>
+//   <Component {...pageProps} />
+// </Layout>
+
+
+
+// Here:
+
+// <Component {...pageProps} /> is the page you are visiting (e.g., index.tsx)
+
+// That component is passed as children to Layout
+
+// Layout renders it inside <main>:
+
+// Header
+// <main>
+//   <-- children content goes here (your page) -->
+// </main>
+// Footer
+
+
+// So every page automatically gets Header + Footer without you adding them manually to each page. ✅
